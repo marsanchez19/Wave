@@ -1,0 +1,43 @@
+.bg-custom{
+    background-color: #0E2148;
+}
+.navbar-nav{
+    margin-left: auto ;
+}
+
+/*Portada*/
+.portada{
+    position: relative;
+    background-image: url('img/portada.jpg');
+    background-size: cover;
+    background-attachment: fixed; /* Esto crea el efecto fijo */
+    background-position: center;
+    height: 600px; /* Ajusta esto según la altura deseada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Ajusta el color del texto según necesites */
+}
+
+.titulo{
+    text-align: right;
+}
+
+
+/*Footer*/
+.bg-custom.fixed-bottom {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px; 
+    background-color: #0E2148;
+    color: white;
+}
+.bg-custom.fixed-bottom a {
+    display: flex; 
+    justify-content: center; 
+}
+.bg-custom.fixed-bottom a img {
+    width: 28px;
+    height: auto;
+}
