@@ -43,33 +43,31 @@
     </div>
   </nav>
 
-//pagos//
   <div class="bg-white p-5 rounded-5 text-secondary form-section">
     <div class="section-title">PAGOS</div>
+    <form action="formulariobd.php" method="POST"></form>
 
-//datos personales//
-    <div class="form-subtitle mt-4">DATOS PERSONALES</div>
+    <div  class="form-subtitle mt-4">DATOS PERSONALES</div>
     <div class="row">
       <div class="col-md-6">
-        <input class="form-control mt-3" type="text" placeholder="Nombres">
+        <input class="form-control mt-3" type="text" placeholder="Nombres" name="nombres_completos">
       </div>
       <div class="col-md-6">
-        <input class="form-control mt-3" type="text" placeholder="Apellidos">
+        <input class="form-control mt-3" type="text" placeholder="Apellidos" name="apellidos_completos">
       </div>
       <div class="col-md-5">
         <label for="fechaNacimiento">
-        <input class="form-control mt-3" type="text" id="fechaNacimiento" name="fechaNacimiento" onfocus="this.type='date'" onblur="this.type='text'" placeholder="Fecha de Nacimiento">
+        <input class="form-control mt-3" type="text" id="fechaNacimiento" name="fechaNacimiento" onfocus="this.type='date'" onblur="this.type='text'" placeholder="Fecha de Nacimiento" name="fecha_real">
     </div>
       <div class="col-md-7">
-        <input class="form-control mt-3" type="text" placeholder="Cédula">
+        <input class="form-control mt-3" type="text" placeholder="Cédula" name="identidad">
       </div>      
       <div class="col-md-12">
-        <input class="form-control mt-3" type="email" placeholder="Correo">
+        <input class="form-control mt-3" type="email" placeholder="Correo" name="email">
       </div>
       <div class="col-md-12">
-        <input class="form-control mt-3" type="text" placeholder="Dirección de Envío/Instalación">
+        <input class="form-control mt-3" type="text" placeholder="Dirección de Envío/Instalación" name="direcc_ubi">
       </div>
-//proceso de pago//
     </div>
     <div class="form-subtitle mt-4">PROCESO DE PAGO</div>
     <div class="row">
@@ -92,26 +90,22 @@
       <div class="col-md-3">
         <input class="form-control mt-3" type="text" placeholder="Código" pattern="\d{3}" maxlength="3" oninput="this.value=this.value.replace(/\D/g,'')">
       </div>
-//otro metodo de pago//
     </div>
     <div class="form-subtitle mt-4">OTRO MEDIO DE PAGO</div>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="pagaAlRecibir">
       <label class="form-check-label" for="pagaAlRecibir">PAGA AL RECIBIR</label>
     </div>
-
-//botones de cacelar y pagar//
     <div class="d-flex justify-content-center mt-4">
-      <form action="menu.html" class="me-2">
+    <form action="menu.php" class="me-2">
         <button class="btn btn-secondary btn-block" type="submit">Cancelar</button>
-      </form>
-      <form action="final.html">
-        <button class="btn btn-primary btn-block"  type="submit" >Pagar </button >
-      </form>
+    </form>
+    <form action="formulariobd.php" method="POST">
+        <button class="btn btn-primary btn-block" name="pagar">Pagar</button>
+    </form>
     </div>
     </div>
   </div>
 </body>
 
 </html>
-
