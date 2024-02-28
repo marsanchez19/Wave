@@ -52,6 +52,5 @@
     <a href="https://www.instagram.com/tuUsuario" target="_blank"><img src="img/Instagram.png" alt="Instagram"></a>
     <a href="https://wa.me/tuNumeroWhatsApp" target="_blank"><img src="img/WhatsApp.png" alt="WhatsApp"></a>
 </footer>
-    </footer>
 </body>
 </html>
