@@ -1,3 +1,24 @@
+<?php
+session_start();
+if (isset($_GET['eliminar'])) {
+    $indice = $_GET['eliminar'];
+    unset($_SESSION['carrito'][$indice]);
+    // Opcionalmente, reindexar el array para evitar índices vacíos
+    $_SESSION['carrito'] = array_values($_SESSION['carrito']);
+    // Redireccionar para evitar el reenvío del formulario
+    header('Location: carrito.php');
+}
+if (isset($_GET['vaciarCarrito'])) {
+    unset($_SESSION['carrito']); // Esto elimina el carrito de la sesión
+    // Opcionalmente, puedes redireccionar al mismo carrito para evitar el reenvío del formulario
+    header('Location: carrito.php');
+    exit(); // Asegúrate de llamar a exit después de redireccionar
+}
+
+
+$total = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,36 +58,46 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="catalogo/moviles.html">Móviles</a>
+                <a class="nav-link" href="catalogo/moviles.php">Móviles</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="catalogo/hogar.html">Hogar</a>
+                <a class="nav-link" href="catalogo/hogar.php">Hogar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="catalogo/negocios.html">Negocios</a>
+                <a class="nav-link" href="catalogo/negocios.php">Negocios</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     <div class="contenedor">
-    <div class="card" id="carritoCompras" style="width: 50rem;">
-        <div class="card-header">
-          Carrito de Compras
+        <div class="card" id="carritoCompras" style="width: 50rem;">
+            <div class="card-header">
+              Carrito de Compras
+            </div>
+            <ul class="list-group list-group-flush" id="listaProductos">
+                <?php
+                if (!empty($_SESSION['carrito'])) {
+                    foreach ($_SESSION['carrito'] as $indice => $producto) { 
+                        $total += $producto['precio_plan'] * $producto['cantidad'];
+                        echo "<li class='list-group-item'>";
+                        echo htmlspecialchars($producto['nombre_plan']);
+                        echo "<span class='precio'>Precio: $" . htmlspecialchars($producto['precio_plan']) . "</span>";
+                        echo "<span class='cantidad'>Cantidad: " . htmlspecialchars($producto['cantidad']) . "</span>";
+                        echo "<a href='carrito.php?eliminar=" . $indice . "' class='btn btn-danger btn-sm'>Eliminar</a>";
+                        echo "</li>";
+                    }
+                }                
+                ?>
+            </ul>
+            <div class="card-body">
+                <h5 class="card-title">Total: $<span id="total"><?php echo $total; ?></span></h5>
+                <a href="formulario.php" class="btn btn-primary">Pagar</a>
+                <a href="carrito.php?vaciarCarrito=true" class="btn btn-secondary">Vaciar Carrito</a>
+
+            </div>
         </div>
-        <ul class="list-group list-group-flush" id="listaProductos">
-            <li class="list-group-item">
-                Móvil plan básico 
-                <span class="precio">Precio: $29.990                </span>
-                <span class="cantidad">Cantidad: 10</span>
-                <button class="btn btn-danger btn-sm" onclick="eliminarProducto(this)">Eliminar</button>
-              </li>        </ul>
-        <div class="card-body">
-          <h5 class="card-title">Total: $<span id="total">299.900</span></h5>
-          <button class="btn btn-primary">Pagar</button>
-          <button class="btn btn-secondary">Vaciar Carrito</button>
-        </div>
-      </div>
     </div>
+
 </body>
 </html>

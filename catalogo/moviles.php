@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['carrito'])) {
+    $_SESSION['carrito'] = array();
+}
+
+if (isset($_POST['plan_id'], $_POST['plan_nombre'], $_POST['plan_precio'], $_POST['cantidad'])) {
+    $plan = array(
+        "id_plan" => $_POST['plan_id'],
+        "nombre_plan" => $_POST['plan_nombre'],
+        "precio_plan" => $_POST['plan_precio'],
+        "cantidad" => $_POST['cantidad']
+    );
+
+    $_SESSION['carrito'][] = $plan;
+}
+
+
+$total = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +32,6 @@
     <link rel="stylesheet" href="../styles.css">
     <title>Wave</title></head>
 <body>
- <!-- Barra de navegación -->  
  <nav class="navbar navbar-expand-sm bg-custom navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -23,16 +44,16 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../menu.html">Inicio</a>
+            <a class="nav-link" href="../menu.php">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hogar.html">Hogar</a>
+            <a class="nav-link" href="hogar.php">Hogar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="negocios.html">Negocios</a>
+            <a class="nav-link" href="negocios.php">Negocios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../carrito.html">
+            <a class="nav-link" href="../carrito.php">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </a>
           </li>
@@ -46,41 +67,59 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Plan Básico</h2>
-                    <p class="card-text">90 GB</p>
-                    <p class="card-text">Minutos ilimitados a todo destino</p>
-                    <p class="card-text">SMS ilimitados</p>
-                    <p class="card-text">$29.990</p>
-                        <input type="number" class="form-control mb-2" placeholder="Cantidad" min="1">
-                        <button class="btn btn-primary">Comprar</button>
-                </div>
+                
+        <form action="" method="POST">
+        <div class="card-body">
+                <h2 class="card-title">Plan Básico</h2>
+                <p class="card-text">90 GB</p>
+                <p class="card-text">Minutos ilimitados a todo destino</p>
+                <p class="card-text">SMS ilimitados</p>
+                <p class="card-text">$29.990</p>
+                <input type="hidden" name="plan_id" value="4">
+                <input type="hidden" name="plan_nombre" value="Plan Básico (Móvil)">
+                <input type="hidden" name="plan_precio" value="29990">
+                <input type="number" required class="form-control mb-2" name="cantidad" placeholder="Cantidad" min="1">
+                <button type="submit" class="btn btn-primary">Comprar</button>
+            </div>
+                
+        </form>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+            <form action="" method="POST">
+        <div class="card-body">
+            <h2 class="card-title">Plan Intermedio</h2>
+            <p class="card-text">150 GB</p>
+            <p class="card-text">Minutos ilimitados a todo destino</p>
+            <p class="card-text">SMS ilimitados</p>
+            <p class="card-text">$59.990</p>
+            <input type="hidden" name="plan_id" value="5">
+            <input type="hidden" name="plan_nombre" value="Plan Intermedio (Móvil)">
+            <input type="hidden" name="plan_precio" value="59990">
+            <input type="number" required class="form-control mb-2" name="cantidad" placeholder="Cantidad" min="1">
+            <button type="submit" class="btn btn-primary">Comprar</button>
+        </div>
+    </form>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Plan Intermedio</h2>
-                    <p class="card-text">150 GB</p>
-                    <p class="card-text">Minutos ilimitados a todo destino</p>
-                    <p class="card-text">SMS ilimitados</p>
-                    <p class="card-text">$59.990</p>
-                        <input type="number" class="form-control mb-2" placeholder="Cantidad" min="1">
-                        <button class="btn btn-primary">Comprar</button>
-                </div>
-            </div>
+            <form action="" method="POST">
+        <div class="card-body">
+            <h2 class="card-title">Plan Premium</h2>
+            <p class="card-text">Datos ilimitados</p>
+            <p class="card-text">Minutos ilimitados a todo destino</p>
+            <p class="card-text">SMS ilimitados</p>
+            <p class="card-text">$99.990</p>
+            <input type="hidden" name="plan_id" value="6">
+            <input type="hidden" name="plan_nombre" value="Plan Premium (Móvil)">
+            <input type="hidden" name="plan_precio" value="99990">
+            <input type="number" required class="form-control mb-2" name="cantidad" placeholder="Cantidad" min="1">
+            <button type="submit" class="btn btn-primary">Comprar</button>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Plan Premium</h2>
-                    <p class="card-text">Datos ilimitados</p>
-                    <p class="card-text">Minutos ilimitados a todo destino</p>
-                    <p class="card-text">SMS ilimitados</p>
-                    <p class="card-text">$99.990</p>
-                        <input type="number" class="form-control mb-2" placeholder="Cantidad" min="1">
-                        <button class="btn btn-primary">Comprar</button>
-                </div>
+    </form>
             </div>
         </div>
     </div>
