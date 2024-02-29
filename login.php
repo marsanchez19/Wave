@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +16,7 @@
     }
   </style>
 </head>
+
 <body class="bg-body-secondary d-flex justify-content-center align-items-center vh-100">
   <nav class="navbar navbar-expand-sm custom-navbar navbar-dark fixed-top">
     <div class="container-fluid">
@@ -19,7 +24,6 @@
         <img src="img/sinfond.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
         <span style="margin-left: 10px; color: white;">Wave</span>
       </a>
-      
     </div>
   </nav>
   <div class="bg-white p-5 rounded-5 text-secondary mt-5">
@@ -27,11 +31,11 @@
       <img src="img/lgin.png" alt="login.icon" style="height: 7rem;">
     </div>
     <div class="text-center fw-bold mt-3">INICIO DE SESION</div>
-    <div>
-      <div><input class="form-control mt-3" type="text" placeholder="Usuario"></div>
-      <div><input class="form-control mt-3" type="password" placeholder="Contraseña"></div>
-    </div>
-    <a href="menu.html" class="btn btn-primary mt-3 w-100">INGRESAR</a>
+    <form action="loginbd.php" method="POST">
+      <div><input class="form-control mt-3" type="text" placeholder="Usuario" name="usuario"></div>
+      <div><input class="form-control mt-3" type="password" placeholder="Contraseña" name="contrasena"></div>
+      <button type="submit" class="btn btn-primary mt-3 w-100" onclick="window.location.href='menu.php'">INGRESAR</button>
+    </form>
   </div>
 </body>
 
