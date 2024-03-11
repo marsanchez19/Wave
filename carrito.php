@@ -3,16 +3,15 @@ session_start();
 if (isset($_GET['eliminar'])) {
     $indice = $_GET['eliminar'];
     unset($_SESSION['carrito'][$indice]);
-    // Opcionalmente, reindexar el array para evitar índices vacíos
+    
     $_SESSION['carrito'] = array_values($_SESSION['carrito']);
-    // Redireccionar para evitar el reenvío del formulario
+  
     header('Location: carrito.php');
 }
 if (isset($_GET['vaciarCarrito'])) {
-    unset($_SESSION['carrito']); // Esto elimina el carrito de la sesión
-    // Opcionalmente, puedes redireccionar al mismo carrito para evitar el reenvío del formulario
+    unset($_SESSION['carrito']); 
     header('Location: carrito.php');
-    exit(); // Asegúrate de llamar a exit después de redireccionar
+    exit(); 
 }
 
 
